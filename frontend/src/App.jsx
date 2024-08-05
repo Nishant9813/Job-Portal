@@ -1,8 +1,9 @@
 import "./App.css";
+import Navbar from "./components/shareable components/Navbar";
 function App() {
   return (
     <>
-      <p className="text-red-500">jd</p>
+     <Navbar/>
     </>
   );
 }
