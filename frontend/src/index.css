@@ -71,15 +71,3 @@ body{
   font-family: sans-serif;
 }
 
-/* .element::after{
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: green;
-  width: 40px;
-  height: 40px;
-  float: center;
-  border-radius: 50%;
-} */
