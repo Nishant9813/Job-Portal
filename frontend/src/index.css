@@ -71,3 +71,42 @@ body{
   font-family: sans-serif;
 }
 
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blinkCaret {
+  from, to { border-color: transparent; }
+  50% { border-color: black; }
+}
+
+.typewriter-text {
+  overflow: hidden;
+  border-right: .15em solid black;
+  white-space: nowrap;
+  width: 0;
+  animation:
+    typewriter 2s steps(40, end) forwards,
+    blinkCaret .75s step-end infinite;
+}
+
+@keyframes flyIn {
+  0% {
+    transform: translateZ(-200px) rotateY(180deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translateZ(0) rotateY(90deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateZ(0) rotateY(0);
+    opacity: 1;
+  }
+}
+
+.logo-3d {
+  animation: flyIn 2s ease-in-out forwards;
+  transform-origin: center;
+}

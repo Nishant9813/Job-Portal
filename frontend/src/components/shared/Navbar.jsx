@@ -30,6 +30,7 @@ import { BsMoonStarsFill, BsSun } from "react-icons/bs";
 const Navbar = () => {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [theme, setTheme] = useState("light");
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -66,7 +67,11 @@ const Navbar = () => {
                 </DrawerDescription>
               </DrawerHeader>
               <DrawerFooter>
-                <Button>Submit</Button>
+                {
+                 !loggedIn ? <><Link to="/register"><Button className="w-full">Sign Up</Button></Link>
+                <Link to="/login"><Button className="w-full">Login</Button></Link></>: "" 
+                }
+                
                 <DrawerClose>
                   <Button variant="outline">Cancel</Button>
                 </DrawerClose>
@@ -79,68 +84,28 @@ const Navbar = () => {
             <img src={logo} alt="logo" className="h-12 w-12" />
           </Link>
           <Link to="/">
-            <p className="text-xl font-bold hidden md:block">
+            <p className="text-xl font-bold  md:block">
               F <span className="text-red-600">Portal</span>
             </p>
           </Link>
         </div>
-        <div className="hidden md:flex space-x-5">
-          <Link to="/">Home</Link>
-          <Link to="/jobs">Jobs</Link>
-          <DropdownMenu>
-            <DropdownMenuTrigger>Browse</DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Link to="/profile">Profile</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link to="/billing">Billing</Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-        <div className="flex justify-center items-center gap-2">
-          <div>
-            <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
-              <PopoverTrigger>
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>Profile</AvatarFallback>
-                </Avatar>
-              </PopoverTrigger>
-              <PopoverContent className="w-64">
-                <div className="">
-                  <div className="flex items-center space-x-4 mb-4">
-                    <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" />
-                      <AvatarFallback>Profile</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <h4>Your Name</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Full Stack Web Developer
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-start">
-                    <Link to="/jobs" onClick={togglePopover}>
-                      <Button variant="link">
-                        <CgProfile className="m-3" />
-                        View Profile
-                      </Button>
-                    </Link>
-                    <Link to="/browse" onClick={togglePopover}>
-                      <Button variant="link">
-                        <AiOutlineLogout className="m-3" />
-                        Logout
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </PopoverContent>
-            </Popover>
+        <div className="flex justify-center items-center gap-4">
+          <div className="hidden md:flex space-x-5">
+            <Link to="/">Home</Link>
+            <Link to="/jobs">Jobs</Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger>Browse</DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Link to="/profile">Profile</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link to="/billing">Billing</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
           <div>
             <button
@@ -150,6 +115,56 @@ const Navbar = () => {
               {theme === "light" ? <BsMoonStarsFill /> : <BsSun />}
             </button>
           </div>
+          {!loggedIn ? (
+            <div className="items-center gap-5 hidden md:flex">
+             <Link to="/login"><Button variant="outline">Login</Button></Link>
+             <Link to="/register"><Button className="bg-[#6a38c2] hover:bg-[#5b30a6] dark:text-white">
+                Sign up
+              </Button>
+              </Link> 
+            </div>
+          ) : (
+            <div>
+              <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
+                <PopoverTrigger>
+                  <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>Profile</AvatarFallback>
+                  </Avatar>
+                </PopoverTrigger>
+                <PopoverContent className="w-64">
+                  <div className="">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <Avatar>
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarFallback>Profile</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <h4>Your Name</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Full Stack Web Developer
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-start">
+                      <Link to="/jobs" onClick={togglePopover}>
+                        <Button variant="link">
+                          <CgProfile className="m-3" />
+                          View Profile
+                        </Button>
+                      </Link>
+                      <Link to="/browse" onClick={togglePopover}>
+                        <Button variant="link">
+                          <AiOutlineLogout className="m-3" />
+                          Logout
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
+          )}
         </div>
       </div>
     </div>
