@@ -5,8 +5,7 @@ import Navbar from "./components/shared/Navbar";
 import Home from "./pages/Home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-
-
+import {Toaster} from "./components/ui/toaster";
 
 const appRouter = createBrowserRouter([
   {
@@ -14,6 +13,7 @@ const appRouter = createBrowserRouter([
     element: <>
       <Navbar/>
      <Home/>
+   
     </>
   },
   {
@@ -29,7 +29,10 @@ const appRouter = createBrowserRouter([
 
 function App() {
   return (
+    <>
     <RouterProvider router={appRouter} />
+ <Toaster /> 
+    </>
   );
 }
 

@@ -20,7 +20,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer";
+} from "@/components/ui/drawer"
 import { AiOutlineLogout } from "react-icons/ai";
 import { Button } from "../ui/button";
 import { CgProfile } from "react-icons/cg";
@@ -31,6 +31,7 @@ const Navbar = () => {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [theme, setTheme] = useState("light");
   const [loggedIn, setLoggedIn] = useState(false);
+  
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -59,7 +60,7 @@ const Navbar = () => {
                 <TiThMenu className="size-5" />
               </Button>
             </DrawerTrigger>
-            <DrawerContent className="w-64 h-full">
+            <DrawerContent className="w-full h-1/2">
               <DrawerHeader>
                 <DrawerTitle>Navigation Menu</DrawerTitle>
                 <DrawerDescription>

@@ -1,1 +1,1 @@
-export const USER_END_POINT_URL = "https://localhost:8000/api/v1/user";
+export const USER_END_POINT_URL = "http://localhost:8000/api/v1/user";
