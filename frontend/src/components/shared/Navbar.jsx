@@ -20,7 +20,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer"
+} from "@/components/ui/drawer";
 import { AiOutlineLogout } from "react-icons/ai";
 import { Button } from "../ui/button";
 import { CgProfile } from "react-icons/cg";
@@ -31,7 +31,6 @@ const Navbar = () => {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [theme, setTheme] = useState("light");
   const [loggedIn, setLoggedIn] = useState(false);
-  
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -48,11 +47,9 @@ const Navbar = () => {
     document.documentElement.classList.toggle("dark");
   };
 
-  const togglePopover = () => setPopoverOpen(!popoverOpen);
-
   return (
     <div className="w-screen mx-auto">
-      <div className="w-full flex items-center justify-between px-6 py-4 bg-white dark:bg-gray-800 text-black dark:text-white ">
+      <div className="w-full flex items-center justify-between px-6 py-4 bg-white dark:bg-gray-800 text-black dark:text-white transition duration-500 ease-in-out transform">
         <div className="md:hidden">
           <Drawer>
             <DrawerTrigger>
@@ -68,11 +65,19 @@ const Navbar = () => {
                 </DrawerDescription>
               </DrawerHeader>
               <DrawerFooter>
-                {
-                 !loggedIn ? <><Link to="/register"><Button className="w-full">Sign Up</Button></Link>
-                <Link to="/login"><Button className="w-full">Login</Button></Link></>: "" 
-                }
-                
+                {!loggedIn ? (
+                  <>
+                    <Link to="/register">
+                      <Button className="w-full">Sign Up</Button>
+                    </Link>
+                    <Link to="/login">
+                      <Button className="w-full">Login</Button>
+                    </Link>
+                  </>
+                ) : (
+                  ""
+                )}
+
                 <DrawerClose>
                   <Button variant="outline">Cancel</Button>
                 </DrawerClose>
@@ -85,7 +90,7 @@ const Navbar = () => {
             <img src={logo} alt="logo" className="h-12 w-12" />
           </Link>
           <Link to="/">
-            <p className="text-xl font-bold  md:block">
+            <p className="text-xl font-bold md:block">
               F <span className="text-red-600">Portal</span>
             </p>
           </Link>
@@ -111,18 +116,21 @@ const Navbar = () => {
           <div>
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-500"
+              className="p-2 rounded-full bg-gray-200 dark:bg-gray-500 transition duration-300 ease-in-out transform hover:scale-110"
             >
               {theme === "light" ? <BsMoonStarsFill /> : <BsSun />}
             </button>
           </div>
           {!loggedIn ? (
             <div className="items-center gap-5 hidden md:flex">
-             <Link to="/login"><Button variant="outline">Login</Button></Link>
-             <Link to="/register"><Button className="bg-[#6a38c2] hover:bg-[#5b30a6] dark:text-white">
-                Sign up
-              </Button>
-              </Link> 
+              <Link to="/login">
+                <Button variant="outline">Login</Button>
+              </Link>
+              <Link to="/register">
+                <Button className="bg-[#6a38c2] hover:bg-[#5b30a6] dark:text-white">
+                  Sign up
+                </Button>
+              </Link>
             </div>
           ) : (
             <div>
@@ -134,7 +142,7 @@ const Navbar = () => {
                   </Avatar>
                 </PopoverTrigger>
                 <PopoverContent className="w-64">
-                  <div className="">
+                  <div>
                     <div className="flex items-center space-x-4 mb-4">
                       <Avatar>
                         <AvatarImage src="https://github.com/shadcn.png" />
