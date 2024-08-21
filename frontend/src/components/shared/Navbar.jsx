@@ -4,14 +4,6 @@ import logo from "../assets/logo.png";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   Drawer,
   DrawerClose,
   DrawerContent,
@@ -48,14 +40,14 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-screen mx-auto">
+    <div className="w-screen mx-auto fixed top-0 left-0 z-10">
       <div className="w-full flex items-center justify-between px-6 py-4 bg-white dark:bg-gray-800 text-black dark:text-white transition duration-500 ease-in-out transform">
         <div className="md:hidden">
           <Drawer>
-            <DrawerTrigger>
-              <Button variant="none">
+            <DrawerTrigger asChild>
+              <div className="cursor-pointer">
                 <TiThMenu className="size-5" />
-              </Button>
+              </div>
             </DrawerTrigger>
             <DrawerContent className="w-full h-1/2">
               <DrawerHeader>
@@ -99,19 +91,7 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-5">
             <Link to="/">Home</Link>
             <Link to="/jobs">Jobs</Link>
-            <DropdownMenu>
-              <DropdownMenuTrigger>Browse</DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Link to="/profile">Profile</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link to="/billing">Billing</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Link to="/browse">Browse</Link>
           </div>
           <div>
             <button
@@ -135,11 +115,13 @@ const Navbar = () => {
           ) : (
             <div>
               <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
-                <PopoverTrigger>
-                  <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback>Profile</AvatarFallback>
-                  </Avatar>
+                <PopoverTrigger asChild>
+                  <div className="cursor-pointer">
+                    <Avatar>
+                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarFallback>Profile</AvatarFallback>
+                    </Avatar>
+                  </div>
                 </PopoverTrigger>
                 <PopoverContent className="w-64">
                   <div>
@@ -156,13 +138,13 @@ const Navbar = () => {
                       </div>
                     </div>
                     <div className="flex flex-col items-start">
-                      <Link to="/jobs" onClick={togglePopover}>
+                      <Link to="/jobs" onClick={() => setPopoverOpen(false)}>
                         <Button variant="link">
                           <CgProfile className="m-3" />
                           View Profile
                         </Button>
                       </Link>
-                      <Link to="/browse" onClick={togglePopover}>
+                      <Link to="/browse" onClick={() => setPopoverOpen(false)}>
                         <Button variant="link">
                           <AiOutlineLogout className="m-3" />
                           Logout

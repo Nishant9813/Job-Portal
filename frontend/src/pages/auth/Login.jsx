@@ -1,17 +1,23 @@
 import React, { useState } from "react";
-import Navbar from "../shared/Navbar";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { RadioGroup } from "../ui/radio-group";
-import { Button } from "../ui/button";
+import Navbar from "../../components/shared/Navbar";
+import { Label } from "../../components/ui/label";
+import { Input } from "../../components/ui/input";
+import { RadioGroup } from "../../components/ui/radio-group";
+import { Button } from "../../components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
-import { USER_END_POINT_URL } from "../utils/constant";
+import { USER_END_POINT_URL } from "../../components/utils/constant";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoading } from "@/components/store/authSlice";
+import { Loader2 } from "lucide-react";
 
 const Login = () => {
   const { toast } = useToast();
+  const { loading, user } = useSelector((store) => store.auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -26,18 +32,19 @@ const Login = () => {
     e.preventDefault();
 
     try {
+      dispatch(setLoading(true));
       const res = await axios.post(`${USER_END_POINT_URL}/login`, input, {
         headers: {
           "Content-Type": "application/json",
         },
-        withCredentials: true, 
+        withCredentials: true,
       });
       toast({
         title: "Success",
         description: "Login successful!",
         status: "success",
       });
-      if(res.data.success){
+      if (res.data.success) {
         navigate("/");
         toast({
           title: "Success",
@@ -51,6 +58,9 @@ const Login = () => {
         description: error.response?.data?.message || "Login failed.",
         status: "error",
       });
+    }
+    finally{
+      dispatch(setLoading(false));
     }
   };
 
@@ -111,9 +121,16 @@ const Login = () => {
               </div>
             </RadioGroup>
           </div>
-          <Button type="submit" className="w-full my-4">
-            Login
-          </Button>
+          {loading ? (
+            <Button className="w-full my-4">
+              {" "}
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait{" "}
+            </Button>
+          ) : (
+            <Button type="submit" className="w-full my-4">
+              Login
+            </Button>
+          )}
           <span className="text-sm">
             Don't have an account?{" "}
             <Link to="/register" className="text-blue-600">

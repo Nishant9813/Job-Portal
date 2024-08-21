@@ -69,8 +69,12 @@
 }
 body{
   font-family: sans-serif;
+  overflow-y: auto;
 }
-
+body::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
 @keyframes typewriter {
   from { width: 0; }
   to { width: 100%; }

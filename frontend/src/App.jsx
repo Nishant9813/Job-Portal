@@ -9,10 +9,11 @@ import {
 import "./App.css";
 import Navbar from "./components/shared/Navbar";
 import Home from "./pages/Home";
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 import { Toaster } from "./components/ui/toaster";
 import Jobs from "./pages/Jobs";
+import Browse from "./pages/Browse";
 
 const appRouter = createBrowserRouter([
   {
@@ -30,15 +31,16 @@ const appRouter = createBrowserRouter([
   {
     path: "/jobs",
     element: <Jobs/>
+  },
+  {
+    path: "/browse",
+    element: <Browse/>
   }
 ]);
 
 function App() {
   return (
-    <>
       <RouterProvider router={appRouter} />
-      <Toaster />
-    </>
   );
 }
 

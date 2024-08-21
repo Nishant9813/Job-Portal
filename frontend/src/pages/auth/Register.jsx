@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Navbar from "../shared/Navbar";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import Navbar from "../../components/shared/Navbar";
+import { Label } from "../../components/ui/label";
+import { Input } from "../../components/ui/input";
+import { Button } from "../../components/ui/button";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { USER_END_POINT_URL } from "../utils/constant";
+import { USER_END_POINT_URL } from "../../components/utils/constant";
 import { useToast } from "@/components/ui/use-toast";
-import { RadioGroup } from "../ui/radio-group";
+import { RadioGroup } from "../../components/ui/radio-group";
 
 const Register = () => {
   const { toast } = useToast();

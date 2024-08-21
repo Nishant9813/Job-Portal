@@ -51,7 +51,7 @@ const JobCard = () => {
         >
           Details
         </Button>
-        <Button className="bg-[#7209b7]">Save For Later</Button>
+        <Button className="bg-[#7209b7] dark:text-white dark:hover:bg-black dark:hover:border dark:hover:border-white">Save For Later</Button>
       </div>
     </div>
   );

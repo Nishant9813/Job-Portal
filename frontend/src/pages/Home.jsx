@@ -9,10 +9,12 @@ const Home = () => {
   return (
     <>
       <Navbar />
+      <div className="pt-24">
       <HeroSection />
       <CategoryCarousel />
       <LatestJob />
       <Footer/>
+      </div>
     </>
   );
 };
