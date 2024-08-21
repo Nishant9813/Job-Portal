@@ -18,11 +18,12 @@ import { Button } from "../ui/button";
 import { CgProfile } from "react-icons/cg";
 import { TiThMenu } from "react-icons/ti";
 import { BsMoonStarsFill, BsSun } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [theme, setTheme] = useState("light");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const loggedIn = useSelector(state => state.auth); 
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");

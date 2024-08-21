@@ -66,7 +66,7 @@ const Register = () => {
   return (
     <>
       <Navbar />
-      <div className="flex items-center justify-center max-w-7xl mx-auto">
+      <div className="flex items-center justify-center max-w-7xl mx-auto pt-24">
         <form
           onSubmit={submitHandler}
           className="w-4/5 md:w-1/2 border border-gray-500 rounded-md p-4 my-10"

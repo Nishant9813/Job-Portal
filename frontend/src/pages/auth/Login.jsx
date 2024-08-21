@@ -9,7 +9,7 @@ import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
 import { USER_END_POINT_URL } from "../../components/utils/constant";
 import { useDispatch, useSelector } from "react-redux";
-import { setLoading } from "@/components/store/authSlice";
+import { setLoading, setUser } from "@/components/store/authSlice";
 import { Loader2 } from "lucide-react";
 
 const Login = () => {
@@ -45,6 +45,7 @@ const Login = () => {
         status: "success",
       });
       if (res.data.success) {
+        dispatch(setUser(res.data.user));
         navigate("/");
         toast({
           title: "Success",
@@ -67,7 +68,7 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <div className="flex items-center justify-center max-w-7xl mx-auto">
+      <div className="flex items-center justify-center max-w-7xl mx-auto pt-24">
         <form
           onSubmit={submitHandler}
           className="w-4/5 md:w-1/2 border border-gray-500 rounded-md p-4 my-10"
