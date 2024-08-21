@@ -120,7 +120,6 @@ const Navbar = () => {
                   <div className="cursor-pointer">
                     <Avatar>
                       <AvatarImage src="https://github.com/shadcn.png" />
-                      <AvatarFallback>Profile</AvatarFallback>
                     </Avatar>
                   </div>
                 </PopoverTrigger>
@@ -139,13 +138,13 @@ const Navbar = () => {
                       </div>
                     </div>
                     <div className="flex flex-col items-start">
-                      <Link to="/jobs" onClick={() => setPopoverOpen(false)}>
-                        <Button variant="link">
+                      <Link to="/profile" onClick={() => setPopoverOpen(false)}>
+                        <Button variant="link" className="focus:outline-none">
                           <CgProfile className="m-3" />
                           View Profile
                         </Button>
                       </Link>
-                      <Link to="/browse" onClick={() => setPopoverOpen(false)}>
+                      <Link to="/" onClick={() => setPopoverOpen(false)}>
                         <Button variant="link">
                           <AiOutlineLogout className="m-3" />
                           Logout
